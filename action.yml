@@ -1,0 +1,43 @@
+name: ui-preview-build-action
+
+description: Builds and creates Storybook artifacts of Yandex Cloud UI packages
+
+inputs:
+  pr:
+    description: PR id used for creating unique URL
+    required: true
+  node-version:
+    description: Node.js version used for building static
+    required: false
+    default: '14'
+
+runs:
+  using: composite
+  steps:
+  - name: Checkout
+    uses: actions/checkout@v2
+    with:
+      fetch-depth: 0
+  - name: Setup Node
+    uses: actions/setup-node@v2
+    with:
+      node-version: ${{ inputs.node-version }}
+  - name: Install Packages
+    run: npm ci
+    shell: bash
+  - name: Build Storybook
+    run: npx build-storybook
+    shell: bash
+  - name: Create Static Artifact
+    uses: actions/upload-artifact@v2
+    with:
+      name: static
+      path: ./storybook-static
+  - name: Save PR ID
+    run: echo ${{ inputs.pr }} > ./pr-id.txt
+    shell: bash
+  - name: Create PR Artifact
+    uses: actions/upload-artifact@v2
+    with:
+      name: pr
+      path: ./pr-id.txt
