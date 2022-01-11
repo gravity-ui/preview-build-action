@@ -5,7 +5,7 @@ description: Builds and creates Storybook artifacts of Yandex Cloud UI packages
 inputs:
   pr:
     description: PR id used for creating unique URL
-    required: true
+    required: false
   node-version:
     description: Node.js version used for building static
     required: false
@@ -34,7 +34,11 @@ runs:
       name: static
       path: ./storybook-static
   - name: Save PR ID
-    run: echo ${{ inputs.pr }} > ./pr-id.txt
+    run: >
+      pr = "${{ inputs.pr }}"
+      if [ -z "$pr" ] then
+        pr = ${{ github.event.pull_request.id }}
+      echo $pr > ./pr-id.txt
     shell: bash
   - name: Create PR Artifact
     uses: actions/upload-artifact@v2
