@@ -37,7 +37,7 @@ runs:
     run: |
       pr="${{ inputs.pr }}"
       if [[ -z "$pr" ]]; then
-        pr="${{ github.event.pull_request.id }}"
+        pr="${{ github.event.pull_request.number }}"
       fi
       echo $pr > ./pr-id.txt
     shell: bash
