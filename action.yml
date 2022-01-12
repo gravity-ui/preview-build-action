@@ -35,9 +35,10 @@ runs:
       path: ./storybook-static
   - name: Save PR ID
     run: |
-      pr = "${{ inputs.pr }}"
-      if [[ -z "$pr" ]] then
-        pr = ${{ github.event.pull_request.id }}
+      pr="${{ inputs.pr }}"
+      if [[ -z "$pr" ]]; then
+        pr="${{ github.event.pull_request.id }}"
+      fi
       echo $pr > ./pr-id.txt
     shell: bash
   - name: Create PR Artifact
