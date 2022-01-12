@@ -36,7 +36,7 @@ runs:
   - name: Save PR ID
     run: >
       pr = "${{ inputs.pr }}"
-      if [ -z "$pr" ] then
+      if [[ -z "$pr" ]] then
         pr = ${{ github.event.pull_request.id }}
       echo $pr > ./pr-id.txt
     shell: bash
