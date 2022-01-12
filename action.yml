@@ -34,7 +34,7 @@ runs:
       name: static
       path: ./storybook-static
   - name: Save PR ID
-    run: >
+    run: |
       pr = "${{ inputs.pr }}"
       if [[ -z "$pr" ]] then
         pr = ${{ github.event.pull_request.id }}
