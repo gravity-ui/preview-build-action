@@ -1,6 +1,6 @@
-name: ui-preview-build-action
+name: preview-build-action
 
-description: Builds and creates Storybook artifacts of Yandex Cloud UI packages
+description: Builds and creates Storybook artifacts of Gravity UI packages
 
 inputs:
   pr:

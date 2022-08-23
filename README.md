@@ -1,7 +1,7 @@
-# ui-preview-build-action
+# preview-build-action
 
 A GitHub action that builds Storybook's static files and stores them into workflow artifacts.
-It's the first action of two "Build -> Deploy" actions.
+It's the first action of sequence "Build -> Deploy".
 
 ## Inputs
 
@@ -21,5 +21,5 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - uses: yandex-cloud/ui-preview-build-action@master
+    - uses: gravity-ui/preview-build-action@v1
 ```
