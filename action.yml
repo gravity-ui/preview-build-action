@@ -26,7 +26,7 @@ runs:
     run: npm ci
     shell: bash
   - name: Build Storybook
-    run: npx build-storybook
+    run: "npx --no-install build-storybook || npx --no-install sb build"
     shell: bash
   - name: Create Static Artifact
     uses: actions/upload-artifact@v2
