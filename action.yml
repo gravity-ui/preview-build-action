@@ -29,7 +29,7 @@ runs:
     run: "npx --no-install build-storybook || npx --no-install sb build"
     shell: bash
   - name: Create Static Artifact
-    uses: actions/upload-artifact@v2
+    uses: actions/upload-artifact@v3
     with:
       name: static
       path: ./storybook-static
@@ -42,7 +42,7 @@ runs:
       echo $pr > ./pr-id.txt
     shell: bash
   - name: Create PR Artifact
-    uses: actions/upload-artifact@v2
+    uses: actions/upload-artifact@v3
     with:
       name: pr
       path: ./pr-id.txt
